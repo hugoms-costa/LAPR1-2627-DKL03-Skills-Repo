@@ -1,3 +1,39 @@
+.hero{
+    display: flex;
+    height: calc(100vh - 65px);
+}
+
+.hero-esq,
+.hero-dir{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.hero-logo{
+    width: 100%;
+    max-width: 420px;
+}
+
+.procurar-btn{
+    display: inline-flex;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    padding: 1.5rem 5rem;
+    border: none;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    background-color: #a6192e;
+    color: white;
+}
+
+.procurar-btn:hover{
+    background-color: #771423;
+}
+
 .avatar-sm{
     width: 32px;
     height: 32px;
