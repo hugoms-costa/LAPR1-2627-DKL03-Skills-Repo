@@ -59,14 +59,24 @@
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
                     </select>
                 </div>
                 <div>
-                    <label for="preco" class="form-label">Preço por pessoa (máx 10€)</label>
-                    <div class="input-group">
-                        <input type="number" id="preco" class="form-control"
-                            min="0" max="10" step="0.10" inputmode="decimal" required>
-                        <span class="input-group-text">€</span>
+                    <div>
+                        <label for="preco" class="form-label">Preço por pessoa (máx 10€)</label>
+                        <div class="input-group">
+                            <input type="number" id="preco" class="form-control"
+                                min="0" max="10" step="0.10" inputmode="decimal" required>
+                            <span class="input-group-text">€</span>
+                        </div>
+                    </div>
+                    <div class="form-check form-switch mt-2">
+                        <input class="form-check-input" type="checkbox" role="switch" id="gratuita">
+                        <label class="form-check-label" for="gratuita">Boleia gratuita</label>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-danger mt-4">Publicar</button>
