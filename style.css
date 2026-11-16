@@ -18,7 +18,7 @@
 }
 
 .procurar-btn{
-    display: inline-flex;
+    display: flex;
     align-items: center;
     font-size: 2.5rem;
     font-weight: 700;
@@ -69,3 +69,10 @@
 .login-input{
     width: 600px !important;
 }
+<<<<<<< Updated upstream
+=======
+
+main{
+    user-select: none;
+}
+>>>>>>> Stashed changes
