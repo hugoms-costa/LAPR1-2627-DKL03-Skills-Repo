@@ -18,7 +18,7 @@
 }
 
 .procurar-btn{
-    display: inline-flex;
+    display: flex;
     align-items: center;
     font-size: 2.5rem;
     font-weight: 700;
@@ -69,3 +69,8 @@
 .login-input{
     width: 600px !important;
 }
+
+main{
+    user-select: none;
+}
+
