@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<!-- BoleiaISEP – página do projeto · Equipa Noddy · Laboratório de Projeto 1 · ISEP -->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>BoleiaISEP — Plataforma de boleias internas do ISEP</title>
+  <meta name="description" content="BoleiaISEP: plataforma de partilha de boleias exclusiva para alunos do ISEP. Projeto da Equipa Noddy, Laboratório de Projeto 1.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-bs-spy="scroll" data-bs-target="#menu" data-bs-root-margin="-90px 0px -60% 0px" data-bs-smooth-scroll="true" tabindex="0">
+
+  <!-- ===== Cabeçalho: barra de navegação (logótipo do ISEP + menu) ===== -->
+  <header>
+    <nav class="navbar navbar-expand-xl sticky-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
+          <img
+            src="img/logos/logo-isep.png"
+            alt="Logótipo do ISEP – Instituto Superior de Engenharia do Porto"
+            height="40"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#menu"
+          aria-label="Abrir menu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#contexto">O problema</a></li>
+            <li class="nav-item"><a class="nav-link" href="#objetivos">Vantagens</a></li>
+            <li class="nav-item"><a class="nav-link" href="#ods">Impacto</a></li>
+            <li class="nav-item"><a class="nav-link" href="#solucao">Como funciona</a></li>
+            <li class="nav-item"><a class="nav-link" href="#funcionamento">Preço e segurança</a></li>
+            <li class="nav-item"><a class="nav-link" href="#utilidade">Funcionalidades</a></li>
+            <li class="nav-item"><a class="nav-link" href="#equipa">Equipa</a></li>
+            <li class="nav-item"><a class="nav-link" href="#fontes">Fontes</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== Início: apresentação do BoleiaISEP, convites à ação e 3 destaques ===== -->
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-8">
+            <p class="hero-eyebrow text-uppercase fw-semibold mb-2">
+              A plataforma de boleias dos alunos do ISEP
+            </p>
+            <h1 class="display-3 fw-bold">BoleiaISEP</h1>
+            <p class="lead fs-4">
+              Chega às aulas mais depressa e gasta menos. Partilha o carro ou apanha boleia com
+              colegas do ISEP que fazem o teu percurso.
+            </p>
+            <a href="#solucao" class="btn btn-light btn-lg me-2 mt-2">Como funciona</a>
+            <a href="#funcionamento" class="btn btn-outline-light btn-lg mt-2">Ver o preço</a>
+          </div>
+          <div class="col-lg-4 text-center">
+            <img
+              src="img/logos/icone-boleiaisep.png"
+              alt="Ícone do BoleiaISEP: dois marcadores de localização ligados por um percurso"
+              class="hero-icon"
+            />
+          </div>
+        </div>
+
+        <!-- Destaques -->
+        <div class="row g-3 mt-4 hero-destaques">
+          <div class="col-md-4"><div class="destaque">🎓 <strong>Só alunos do ISEP</strong><span>Registo com o email institucional</span></div></div>
+          <div class="col-md-4"><div class="destaque">💶 <strong>Sem comissões</strong><span>Só se divide o custo da viagem</span></div></div>
+          <div class="col-md-4"><div class="destaque">🤝 <strong>Boleia gratuita</strong><span>O condutor pode oferecê-la</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 1. O problema: porque é que o BoleiaISEP existe ===== -->
+    <section id="contexto">
+      <div class="container">
+        <h2 class="mb-4">Chegar ao ISEP não devia ser complicado</h2>
+        <!-- Duas colunas: texto à esquerda, cartão dos 3 fatores à direita -->
+        <div class="row g-5">
+          <div class="col-lg-7">
+            <p class="fs-5">
+              Para quem não tem carro, o transporte público pode significar esperas e viagens
+              demoradas. Ao mesmo tempo, há colegas que fazem o mesmo caminho com lugares livres.
+            </p>
+            <p>
+              Quem mora fora do Porto, tem poucas opções de transporte ou precisa de várias ligações
+              para chegar às aulas sente isto todos os dias. As deslocações para o polo da Asprela
+              também aumentam o tráfego e a falta de estacionamento.
+            </p>
+            <p class="mb-0">
+              A solução é simples: o <em>carpooling</em>, em que duas ou mais pessoas partilham o
+              mesmo carro e dividem as despesas. O BoleiaISEP põe estes dois grupos em contacto.
+            </p>
+          </div>
+
+          <div class="col-lg-5">
+            <!-- Cartão: económico, tempo e ambiente -->
+            <div class="card">
+              <div class="card-body p-4">
+                <h3 class="h5 mb-4">Porque partilhar boleia compensa</h3>
+                <div class="d-flex gap-3 mb-3">
+                  <div class="ico mb-0 flex-shrink-0">€</div>
+                  <div><strong>Poupas dinheiro</strong><br /><span class="text-muted">Partilha de custos diretos de transporte.</span></div>
+                </div>
+                <div class="d-flex gap-3 mb-3">
+                  <div class="ico mb-0 flex-shrink-0">⏱</div>
+                  <div><strong>Ganhas tempo</strong><br /><span class="text-muted">Menos esperas e mais tempo para estudo e descanso.</span></div>
+                </div>
+                <div class="d-flex gap-3 mb-3">
+                  <div class="ico mb-0 flex-shrink-0">🌱</div>
+                  <div><strong>Ajudas o ambiente</strong><br /><span class="text-muted">Menos carros em circulação e menos emissões de CO₂.</span></div>
+                </div>
+                <p class="small text-muted mb-0">Fontes: AMPorto (2016); European Environment Agency (2026).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. Vantagens: o que o BoleiaISEP traz (objetivos da solução) ===== -->
+    <section id="objetivos" class="bg-soft">
+      <div class="container">
+        <h2 class="mb-3">O que o BoleiaISEP te traz</h2>
+        <p class="mb-4 fs-5">
+          O nosso objetivo é facilitar a partilha de boleias entre alunos do ISEP, com um preço
+          definido pela plataforma ou de forma gratuita.
+        </p>
+        <!-- 3 cartões de vantagens -->
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100"><div class="card-body p-4">
+              <div class="ico">🚌</div>
+              <h3 class="h5">Uma alternativa aos transportes</h3>
+              <p class="mb-0 text-muted">Mais rápida e económica, ou mesmo gratuita, para quem demora muito no transporte público.</p>
+            </div></div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100"><div class="card-body p-4">
+              <div class="ico">🤝</div>
+              <h3 class="h5">Despesas partilhadas</h3>
+              <p class="mb-0 text-muted">Quem conduz reparte os custos da viagem, se assim pretender.</p>
+            </div></div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100"><div class="card-body p-4">
+              <div class="ico">🚗</div>
+              <h3 class="h5">Lugares livres aproveitados</h3>
+              <p class="mb-0 text-muted">Cada carro que já circula passa a levar mais colegas.</p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. Objetivos de Desenvolvimento Sustentável (ODS 11, 12 e 13) ===== -->
+    <section id="ods">
+      <div class="container">
+        <h2 class="mb-4">O nosso impacto: Objetivos de Desenvolvimento Sustentável</h2>
+        <p class="mb-4">
+          Cada boleia partilhada contribui para três dos 17 Objetivos de Desenvolvimento
+          Sustentável das Nações Unidas. O ODS 11 é o mais importante para o projeto.
+        </p>
+        <!-- Um cartão por ODS: ícone oficial + justificação (ODS 11, 12 e 13) -->
+        <div class="row g-3">
+          <div class="col-lg-4">
+            <div class="card h-100">
+              <div class="card-body p-3 d-flex gap-3 align-items-center">
+                <img
+                  src="img/ods/ods-11.svg"
+                  class="ods-img"
+                  alt="ODS 11: Cidades e Comunidades Sustentáveis"
+                  width="110"
+                  height="110"
+                />
+                <div>
+                  <span class="tag mb-2">Central no projeto</span>
+                  <p class="mb-0 small">
+                    Ao rentabilizar os lugares vazios dos carros que já circulam, reduz o tráfego, a procura
+                    por estacionamento e a pressão sobre os transportes públicos.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card h-100">
+              <div class="card-body p-3 d-flex gap-3 align-items-center">
+                <img
+                  src="img/ods/ods-12.svg"
+                  class="ods-img"
+                  alt="ODS 12: Produção e Consumo Sustentáveis"
+                  width="110"
+                  height="110"
+                />
+                <div>
+                  <p class="mb-0 small">
+                    Ao maximizar a utilização de recursos existentes, como veículos e combustível, segundo
+                    os princípios da economia partilhada.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card h-100">
+              <div class="card-body p-3 d-flex gap-3 align-items-center">
+                <img
+                  src="img/ods/ods-13.svg"
+                  class="ods-img"
+                  alt="ODS 13: Ação Climática"
+                  width="110"
+                  height="110"
+                />
+                <div>
+                  <p class="mb-0 small">
+                    Ao reduzir as emissões de gases com efeito de estufa por cada viagem partilhada que
+                    substitua um carro com apenas um condutor.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="small text-muted mt-3 mb-0">
+          Fonte: Organização das Nações Unidas (2026). Ícones:
+          <a href="https://sdgs.un.org/goals" target="_blank" rel="noopener">United Nations – Sustainable Development Goals</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== 4. Como funciona: 4 passos, motivação e a quem se destina ===== -->
+    <section id="solucao">
+      <div class="container">
+        <h2 class="mb-3">Como funciona</h2>
+        <p class="mb-5 fs-5">
+          O BoleiaISEP é uma plataforma de partilha de boleias exclusiva para alunos do ISEP. Em
+          quatro passos tens a tua boleia combinada.
+        </p>
+
+        <!-- Os 4 passos: registo, publicar, pesquisar e reservar, pagar -->
+        <div class="row g-4 text-center mb-5">
+          <div class="col-6 col-lg-3">
+            <div class="step">1</div>
+            <h3 class="h6">Regista-te</h3>
+            <p class="small text-muted">Com o email institucional do ISEP.</p>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="step">2</div>
+            <h3 class="h6">Publica a tua boleia</h3>
+            <p class="small text-muted">Se conduzes: percurso, horário e lugares disponíveis.</p>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="step">3</div>
+            <h3 class="h6">Pesquisa e reserva</h3>
+            <p class="small text-muted">Se precisas de boleia: partida, destino e hora.</p>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="step">4</div>
+            <h3 class="h6">Paga e viaja</h3>
+            <p class="small text-muted">O pagamento é na reserva, ou a boleia é gratuita.</p>
+          </div>
+        </div>
+
+        <!-- Motivação -->
+        <div class="callout mb-5">
+          <p class="mb-0">
+            <strong>Há muito carro com lugares vazios.</strong> Em 2017, o automóvel era o principal
+            meio de transporte na Área Metropolitana do Porto
+            (<a href="https://www.ine.pt" target="_blank" rel="noopener">INE, 2018</a>), e há alunos
+            que viajam com lugares livres
+            (<a href="https://doi.org/10.3390/en14217177" target="_blank" rel="noopener">Noussan &amp; Jarre, 2021</a>).
+            O BoleiaISEP liga estes dois mundos.
+          </p>
+        </div>
+
+        <!-- Público-alvo -->
+        <h3 class="subtitulo mt-0">Feito para ti, seja qual for o teu lado do volante</h3>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card h-100"><div class="card-body p-4">
+              <div class="ico">🧑‍✈️</div>
+              <h3 class="h5">Condutores</h3>
+              <p class="mb-0 text-muted">Tens carro e fazes o caminho até ao ISEP? Oferece boleia e reparte as despesas, ou oferece-a de graça.</p>
+            </div></div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100"><div class="card-body p-4">
+              <div class="ico">🎒</div>
+              <h3 class="h5">Passageiros</h3>
+              <p class="mb-0 text-muted">Moras longe ou tens poucas ligações até à escola? Encontra um colega que segue na tua direção.</p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5. Preço e segurança: preço, pagamento, cancelamentos e segurança ===== -->
+    <section id="funcionamento">
+      <div class="container">
+        <h2 class="mb-4">Preço justo e viagens seguras</h2>
+
+        <!-- 5.1 Cálculo do preço: explicação, fórmula e simulador -->
+        <h3 class="subtitulo mt-0">Sabes quanto pagas antes de reservar</h3>
+        <div class="row">
+          <div class="col-lg-9">
+            <p>
+              O preço de cada boleia é calculado pela plataforma a partir da distância do percurso
+              (<em>d</em>), para que o condutor não tenha de negociar valores.
+            </p>
+            <p class="mb-2">O cálculo tem três passos:</p>
+            <ol>
+              <li>A distância é obtida a partir da origem e do destino;</li>
+              <li>Multiplica-se essa distância por um valor de referência por quilómetro;</li>
+              <li>O custo total é dividido por todas as pessoas no carro, incluindo o condutor.</li>
+            </ol>
+            <p>
+              Como valor de referência, propõe-se 0,40&nbsp;€ por quilómetro, que é o valor fixado para
+              a compensação por deslocação e viatura própria em Portugal e que cobre combustível e
+              desgaste do veículo
+              (<a href="https://www.occ.pt/pt-pt/noticias/irs-ajudas-de-custo-6" target="_blank" rel="noopener">Ordem dos Contabilistas Certificados (OCC), 2026</a>).
+            </p>
+          </div>
+        </div>
+
+        <!-- Fórmula (esquerda) e simulador (direita). O simulador é controlado por js/preco.js -->
+        <div class="row g-4 mb-5">
+          <div class="col-lg-6">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <p class="mb-2">
+                  Sendo <em>d</em> a distância em quilómetros, <em>v</em> o valor por quilómetro e
+                  <em>n</em> o número de passageiros, o preço por passageiro dá-se na forma:
+                </p>
+                <div class="formula">
+                  <math display="block">
+                    <mrow>
+                      <mtext>Preço por passageiro</mtext>
+                      <mo>=</mo>
+                      <mfrac>
+                        <mrow><mi>d</mi><mo>·</mo><mi>v</mi></mrow>
+                        <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow>
+                      </mfrac>
+                    </mrow>
+                  </math>
+                </div>
+                <p class="small text-muted mb-0">
+                  Exemplo: uma viagem de 10&nbsp;km com 3 passageiros teria um custo total de
+                  10 × 0,40&nbsp;€ = 4,00&nbsp;€, e cada passageiro paga 4,00&nbsp;€ / 4 =
+                  1,00&nbsp;€. O condutor pode sempre optar por oferecer a boleia gratuitamente.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <h4 class="h6 text-uppercase text-muted mb-1">Simulador</h4>
+                <p class="small text-muted">
+                  Experimenta com os valores de uma viagem (valor de referência: 0,40&nbsp;€ por
+                  quilómetro).
+                </p>
+                <div class="row g-3 mb-3">
+                  <div class="col-6">
+                    <label for="sim-distancia" class="form-label small">Distância (km)</label>
+                    <input type="number" id="sim-distancia" class="form-control" min="1" max="200" step="1" value="10" />
+                  </div>
+                  <div class="col-6">
+                    <label for="sim-passageiros" class="form-label small">Passageiros (n)</label>
+                    <select id="sim-passageiros" class="form-select">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3" selected>3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="sim-resultado">
+                  <div>
+                    <span class="small text-muted">Custo total</span>
+                    <strong id="sim-total">4,00&nbsp;€</strong>
+                  </div>
+                  <div>
+                    <span class="small text-muted">Cada passageiro paga</span>
+                    <strong id="sim-preco">1,00&nbsp;€</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5.2 Pagamento -->
+        <h3 class="subtitulo">Pagamento simples e sem comissões</h3>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <h4 class="h6">Pagamento na reserva</h4>
+                <p class="mb-0 text-muted">
+                  O passageiro tem acesso ao preço da viagem antes de efetuar a reserva, realizando o
+                  pagamento através da plataforma no momento da mesma. O montante fica temporariamente
+                  retido pela plataforma, sendo posteriormente transferido para o condutor apenas após
+                  a realização da viagem. Este mecanismo procura garantir maior segurança e confiança
+                  para ambas as partes.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <h4 class="h6">Sem comissões</h4>
+                <p class="mb-0 text-muted">
+                  A plataforma não cobra qualquer comissão pelas viagens, não tendo fins lucrativos
+                  para os seus desenvolvedores. O seu único propósito é facilitar a mobilidade dos
+                  estudantes promovendo a partilha de viagens, a redução dos custos de deslocação e o
+                  espírito de entreajuda.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5.3 Cancelamentos e reembolsos -->
+        <h3 class="subtitulo">Cancelamentos e reembolsos</h3>
+        <ul class="list-group shadow-sm">
+            <li class="list-group-item d-flex justify-content-between align-items-center gap-3 py-3">
+              <div>
+                <div>O condutor cancela a boleia</div>
+              </div>
+              <span class="badge text-bg-success flex-shrink-0">Reembolso total</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center gap-3 py-3">
+              <div>
+                <div>O passageiro cancela com 24 horas de antecedência</div>
+              </div>
+              <span class="badge text-bg-success flex-shrink-0">Reembolso total</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center gap-3 py-3">
+              <div>
+                <div>O passageiro cancela depois desse prazo</div>
+              <div class="small text-muted">O valor não é reembolsado e segue para o condutor, que reservou o lugar.</div>
+              </div>
+              <span class="badge text-bg-danger flex-shrink-0">Sem reembolso</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center gap-3 py-3">
+              <div>
+                <div>A boleia não se realiza por motivo imputável ao condutor</div>
+              </div>
+              <span class="badge text-bg-success flex-shrink-0">Reembolso total</span>
+            </li>
+        </ul>
+
+        <!-- 5.4 Segurança e responsabilidade: 4 medidas + responsabilidade do condutor -->
+        <h3 class="subtitulo">Viaja com confiança</h3>
+        <p class="mb-4">A segurança assenta em quatro medidas:</p>
+        <div class="row g-4 mb-4">
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body p-4 d-flex gap-3 align-items-start">
+                <div class="step flex-shrink-0 m-0">1</div>
+                <p class="mb-0">Acesso exclusivo com email institucional do ISEP, o que garante que todos os utilizadores são alunos.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body p-4 d-flex gap-3 align-items-start">
+                <div class="step flex-shrink-0 m-0">2</div>
+                <p class="mb-0">Perfis com nome e curso, e avaliações mútuas após cada viagem.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body p-4 d-flex gap-3 align-items-start">
+                <div class="step flex-shrink-0 m-0">3</div>
+                <p class="mb-0">Pontos de encontro predefinidos junto ao campus.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body p-4 d-flex gap-3 align-items-start">
+                <div class="step flex-shrink-0 m-0">4</div>
+                <p class="mb-0">Possibilidade de denunciar utilizadores, com suspensão da conta em caso de comportamento indevido.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="callout">
+          <p class="mb-2">
+            Quanto à responsabilidade, o condutor declara no registo que possui carta de condução e
+            seguro automóvel válido, e é responsável pela condução e pelo veículo.
+          </p>
+          <p class="mb-0">
+            Estas regras constarão dos termos de utilização, que cada utilizador aceita no registo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. Funcionalidades: o que a plataforma oferece ===== -->
+    <section id="utilidade" class="bg-soft">
+      <div class="container">
+        <h2 class="mb-3">Tudo o que precisas para combinar uma boleia</h2>
+        <p class="mb-4 fs-5">
+          Reunimos num só sítio a oferta e a procura de boleias entre alunos, para reduzires o tempo
+          e o custo das deslocações.
+        </p>
+        <!-- 5 cartões: necessidade → funcionalidade → utilidade -->
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100"><div class="card-body p-4">
+              <div class="ico">🔎</div>
+              <h3 class="h5">Encontrar uma boleia compatível</h3>
+              <p class="mb-2"><strong>Pesquisa por local de partida, destino e hora.</strong></p>
+              <p class="mb-0 text-muted">Encontra colegas que seguem na mesma direção, em horários compatíveis.</p>
+            </div></div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100"><div class="card-body p-4">
+              <div class="ico">🚗</div>
+              <h3 class="h5">Aproveitar lugares livres</h3>
+              <p class="mb-2"><strong>Publicação de boleias com percurso, horário, lugares e preço.</strong></p>
+              <p class="mb-0 text-muted">Combina um valor acessível e aproveita os lugares livres.</p>
+            </div></div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100"><div class="card-body p-4">
+              <div class="ico">💳</div>
+              <h3 class="h5">Saber quanto se paga</h3>
+              <p class="mb-2"><strong>Pagamento pela plataforma, no momento da reserva.</strong></p>
+              <p class="mb-0 text-muted">O preço é conhecido antes de reservar, sem acordos à parte.</p>
+            </div></div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100"><div class="card-body p-4">
+              <div class="ico">🎓</div>
+              <h3 class="h5">Viajar só com colegas</h3>
+              <p class="mb-2"><strong>Registo com o email institucional do ISEP.</strong></p>
+              <p class="mb-0 text-muted">Acesso restrito à comunidade do ISEP.</p>
+            </div></div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100"><div class="card-body p-4">
+              <div class="ico">⭐</div>
+              <h3 class="h5">Escolher com confiança</h3>
+              <p class="mb-2"><strong>Avaliações entre condutores e passageiros.</strong></p>
+              <p class="mb-0 text-muted">Conhece a experiência de outros utilizadores antes de escolher (<a href="https://doi.org/10.1016/j.elerap.2019.100835" target="_blank" rel="noopener">Basili &amp; Rossi, 2020</a>).</p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7. Equipa Noddy: membros e fotografias (img/equipa/) ===== -->
+    <section id="equipa" class="bg-soft">
+      <div class="container">
+        <h2 class="mb-2">Equipa Noddy</h2>
+        <p class="mb-4 text-muted">
+          Licenciatura em Engenharia Informática · Laboratório de Projeto 1 (LAPR1) · Instituto Superior
+          de Engenharia do Porto
+        </p>
+        <div class="row g-4">
+          <div class="col-6 col-lg-3 member">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <div class="avatar">
+                  GC<img
+                    src="img/equipa/goncalo-cardoso.jpg"
+                    alt="Fotografia de Gonçalo Cardoso"
+                    onerror="this.remove()"
+                  />
+                </div>
+                <h3 class="h6 mb-1">Gonçalo Cardoso</h3>
+                <div class="small text-muted">1261485 · Turma 1DK</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3 member">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <div class="avatar">
+                  HC<img
+                    src="img/equipa/hugo-costa.jpg"
+                    alt="Fotografia de Hugo Costa"
+                    onerror="this.remove()"
+                  />
+                </div>
+                <h3 class="h6 mb-1">Hugo Costa</h3>
+                <div class="small text-muted">1261271 · Turma 1DK</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3 member">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <div class="avatar">
+                  DC<img
+                    src="img/equipa/diogo-costa.jpg"
+                    alt="Fotografia de Diogo Costa"
+                    onerror="this.remove()"
+                  />
+                </div>
+                <h3 class="h6 mb-1">Diogo Costa</h3>
+                <div class="small text-muted">1260673 · Turma 1DK</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3 member">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <div class="avatar">
+                  DS<img
+                    src="img/equipa/diana-sobral.jpg"
+                    alt="Fotografia de Diana Sobral"
+                    onerror="this.remove()"
+                  />
+                </div>
+                <h3 class="h6 mb-1">Diana Sobral</h3>
+                <div class="small text-muted">1260809 · Turma 1DL</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 8. Bibliografia ===== -->
+    <section id="fontes">
+      <div class="container">
+        <h2 class="mb-4">Fontes de informação</h2>
+        <ul class="list-unstyled mb-0">
+          <li class="mb-2">
+            AMPorto (2016).
+            <a href="https://cdn.bndlyr.com/stljpltqzpxcsfeb/_assets/documents/2016/12/06/relatorio_final_pamus_amp_MuztgqN.pdf" target="_blank" rel="noopener">Plano de Ação de Mobilidade Urbana Sustentável da Área Metropolitana do Porto: Relatório Final</a>.
+          </li>
+          <li class="mb-2">
+            Basili, M., &amp; Rossi, M. A. (2020). Platform-mediated reputation systems in the sharing
+            economy and incentives to provide service quality: The case of ridesharing services.
+            <em>Electronic Commerce Research and Applications, 39</em>, 100835.
+            <a href="https://doi.org/10.1016/j.elerap.2019.100835" target="_blank" rel="noopener">doi:10.1016/j.elerap.2019.100835</a>.
+          </li>
+          <li class="mb-2">
+            European Environment Agency (2026). <em>Clean energy technologies are driving job creation
+            in the EU, but challenges remain around skill shortages and inclusion</em>.
+          </li>
+          <li class="mb-2">
+            Instituto Nacional de Estatística (2018).
+            <a href="https://www.ine.pt" target="_blank" rel="noopener">Mobilidade e funcionalidade do território nas Áreas Metropolitanas do Porto e de Lisboa: 2017</a>.
+          </li>
+          <li class="mb-2">
+            Noussan, M., &amp; Jarre, M. (2021). Assessing Commuting Energy and Emissions Savings
+            through Remote Working and Carpooling: Lessons from an Italian Region.
+            <em>Energies, 14</em>(21), 7177.
+            <a href="https://doi.org/10.3390/en14217177" target="_blank" rel="noopener">doi:10.3390/en14217177</a>.
+          </li>
+          <li class="mb-2">
+            Ordem dos Contabilistas Certificados (OCC) (2026, 14 de setembro).
+            <a href="https://www.occ.pt/pt-pt/noticias/irs-ajudas-de-custo-6" target="_blank" rel="noopener">occ.pt/pt-pt/noticias/irs-ajudas-de-custo-6</a>.
+          </li>
+          <li>
+            Organização das Nações Unidas (2026, 9 de julho). <em>Agenda 2030 e os ODS em risco</em>.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Rodapé: logótipo, navegação, equipa e copyright ===== -->
+  <footer class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-5">
+          <div class="logo-foot d-inline-block mb-3">
+            <img src="img/logos/logo-isep.png" alt="Logótipo do ISEP" height="44" />
+          </div>
+          <p class="small mb-0">
+            Instituto Superior de Engenharia do Porto<br />Licenciatura em Engenharia Informática<br />Unidade
+            Curricular: Laboratório de Projeto 1 (LAPR1)
+          </p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h3>Navegação</h3>
+          <ul class="list-unstyled small mb-0">
+            <li><a href="#contexto">O problema</a></li>
+            <li><a href="#objetivos">Vantagens</a></li>
+            <li><a href="#ods">Impacto</a></li>
+            <li><a href="#solucao">Como funciona</a></li>
+            <li><a href="#funcionamento">Preço e segurança</a></li>
+            <li><a href="#utilidade">Funcionalidades</a></li>
+            <li><a href="#equipa">Equipa</a></li>
+            <li><a href="#fontes">Fontes</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-4">
+          <h3>Projeto</h3>
+          <p class="small mb-0">
+            BoleiaISEP<br />Equipa Noddy<br />Gonçalo Cardoso, Hugo Costa, Diogo Costa e Diana Sobral
+          </p>
+        </div>
+      </div>
+      <hr class="border-secondary my-4" />
+      <p class="small text-center mb-0">
+        © 2026 Equipa Noddy · BoleiaISEP · ISEP. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ===== JavaScript do Bootstrap (menu responsivo) ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Simulador do preço (secção Funcionamento) -->
+  <script src="js/preco.js"></script>
+
+</body>
+</html>
