@@ -1,0 +1,3 @@
+Fotografias da equipa (quadradas, com o rosto ao centro).
+Todas colocadas: goncalo-cardoso.jpg, hugo-costa.jpg, diogo-costa.jpg, diana-sobral.jpg
+Se uma foto faltar, a pagina mostra as iniciais.
