@@ -1,0 +1,29 @@
+/* ===== Funcionamento: fórmula do preço e simulador ===== */
+
+.formula {
+  margin: 1rem 0;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: var(--soft);
+  text-align: center;
+}
+
+.formula math {
+  font-size: 1.6rem;
+}
+
+.sim-resultado {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  background: var(--soft);
+}
+
+.sim-resultado strong {
+  display: block;
+  color: var(--isep-d);
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+

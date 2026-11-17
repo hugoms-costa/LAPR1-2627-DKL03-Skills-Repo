@@ -1,0 +1,53 @@
+/* ===== Base: variáveis, elementos gerais, secções e títulos ===== */
+
+/* ---------- Variáveis ---------- */
+:root {
+  --isep: #a63f1f;
+  --isep-d: #7d2d14;
+  --slate: #5f6b73;
+  --soft: #faf5f2;
+  --tinta: #2b2f33;
+}
+
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* o menu fixo não tapa o título da secção */
+}
+
+body {
+  color: var(--tinta);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+a {
+  color: var(--isep);
+}
+
+
+/* ---------- Secções e títulos ---------- */
+section {
+  padding: 4.5rem 0;
+}
+
+.bg-soft {
+  background: var(--soft);
+}
+
+h2 {
+  font-weight: 700;
+  color: var(--isep-d);
+}
+
+/* traço por baixo de cada título de secção */
+h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 0.6rem;
+  border-radius: 2px;
+  background: var(--isep);
+}
+

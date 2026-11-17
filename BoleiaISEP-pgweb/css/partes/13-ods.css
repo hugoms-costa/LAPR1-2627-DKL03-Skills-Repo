@@ -1,0 +1,9 @@
+/* ===== ODS: cartões com os ícones ===== */
+
+.ods-img {
+  flex: none;
+  width: 110px;
+  height: 110px;
+  border-radius: 8px;
+}
+

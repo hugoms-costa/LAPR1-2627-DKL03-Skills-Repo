@@ -1,0 +1,288 @@
+/* ===== Base: variáveis, elementos gerais, secções e títulos ===== */
+
+/* ---------- Variáveis ---------- */
+:root {
+  --isep: #a63f1f;
+  --isep-d: #7d2d14;
+  --slate: #5f6b73;
+  --soft: #faf5f2;
+  --tinta: #2b2f33;
+}
+
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* o menu fixo não tapa o título da secção */
+}
+
+body {
+  color: var(--tinta);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+a {
+  color: var(--isep);
+}
+
+
+/* ---------- Secções e títulos ---------- */
+section {
+  padding: 4.5rem 0;
+}
+
+.bg-soft {
+  background: var(--soft);
+}
+
+h2 {
+  font-weight: 700;
+  color: var(--isep-d);
+}
+
+/* traço por baixo de cada título de secção */
+h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 0.6rem;
+  border-radius: 2px;
+  background: var(--isep);
+}
+
+/* ===== Cabeçalho: barra de navegação ===== */
+
+.navbar {
+  background: #fff;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+}
+
+.navbar .nav-link {
+  color: var(--slate);
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--isep);
+}
+
+.navbar .nav-link.active {
+  font-weight: 600;
+}
+
+/* ===== Componentes partilhados: cartões, ícones, passos, subtítulos e destaques ===== */
+
+/* ---------- Cartões e ícones ---------- */
+.card {
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
+}
+
+.ico {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 1rem;
+  border-radius: 14px;
+  background: var(--soft);
+  color: var(--isep);
+  font-size: 1.5rem;
+}
+
+/* círculos numerados dos 4 passos da solução */
+.step {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: var(--isep);
+  color: #fff;
+  font-weight: 700;
+}
+
+
+/* ---------- Subtítulos e destaques ---------- */
+.subtitulo {
+  margin: 3rem 0 1rem;
+  color: var(--isep-d);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* caixa de destaque com traço lateral */
+.callout {
+  padding: 1.25rem 1.5rem;
+  border-left: 4px solid var(--isep);
+  border-radius: 0 12px 12px 0;
+  background: var(--soft);
+}
+
+.bg-soft .callout {
+  background: #fff;
+}
+
+.callout h3 {
+  color: var(--isep-d);
+  font-weight: 700;
+}
+
+/* etiqueta (ex.: "Central no projeto") */
+.tag {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--isep);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* ===== Início (hero) ===== */
+
+.hero {
+  background: linear-gradient(135deg, var(--isep-d), var(--isep));
+  color: #fff;
+  padding: 5rem 0;
+}
+
+.hero .lead {
+  opacity: 0.92;
+}
+
+.hero-eyebrow {
+  letter-spacing: 0.12em;
+}
+
+.hero-icon {
+  width: 190px;
+  padding: 14px;
+  border-radius: 32px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.btn-light {
+  color: var(--isep-d);
+  font-weight: 600;
+}
+
+/* faixa com 3 destaques no fundo do início */
+.hero-destaques {
+  position: relative;
+}
+
+.destaque {
+  height: 100%;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.destaque strong,
+.destaque span {
+  display: block;
+}
+
+.destaque span {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* ===== ODS: cartões com os ícones ===== */
+
+.ods-img {
+  flex: none;
+  width: 110px;
+  height: 110px;
+  border-radius: 8px;
+}
+
+/* ===== Funcionamento: fórmula do preço e simulador ===== */
+
+.formula {
+  margin: 1rem 0;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: var(--soft);
+  text-align: center;
+}
+
+.formula math {
+  font-size: 1.6rem;
+}
+
+.sim-resultado {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  background: var(--soft);
+}
+
+.sim-resultado strong {
+  display: block;
+  color: var(--isep-d);
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+/* ===== Equipa: avatares e fotografias ===== */
+
+.member {
+  text-align: center;
+}
+
+/* círculo com as iniciais; a fotografia (se existir) cobre-o */
+.avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1rem;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--isep);
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== Rodapé ===== */
+
+footer {
+  background: var(--tinta);
+  color: #cfd4d8;
+}
+
+footer a {
+  color: #e9b8a6;
+}
+
+footer h3 {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.logo-foot {
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #fff;
+}

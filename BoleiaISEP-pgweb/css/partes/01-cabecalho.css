@@ -1,0 +1,21 @@
+/* ===== Cabeçalho: barra de navegação ===== */
+
+.navbar {
+  background: #fff;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+}
+
+.navbar .nav-link {
+  color: var(--slate);
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--isep);
+}
+
+.navbar .nav-link.active {
+  font-weight: 600;
+}
+
