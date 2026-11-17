@@ -1,0 +1,21 @@
+/* ===== Rodapé ===== */
+
+footer {
+  background: var(--tinta);
+  color: #cfd4d8;
+}
+
+footer a {
+  color: #e9b8a6;
+}
+
+footer h3 {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.logo-foot {
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #fff;
+}
