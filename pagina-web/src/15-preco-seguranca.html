@@ -1,0 +1,209 @@
+    <!-- ===== 5. Preço e segurança: preço, pagamento, cancelamentos e segurança ===== -->
+    <section id="funcionamento">
+      <div class="container">
+        <h2 class="mb-4">Preço justo e viagens seguras</h2>
+
+        <!-- 5.1 Cálculo do preço: explicação, fórmula e simulador -->
+        <h3 class="subtitulo mt-0">Sabes quanto pagas antes de reservar</h3>
+        <div class="row">
+          <div class="col-lg-9">
+            <p>
+              O preço de cada boleia é calculado pela plataforma a partir da distância do percurso
+              (<em>d</em>), para que o condutor não tenha de negociar valores.
+            </p>
+            <p class="mb-2">O cálculo tem três passos:</p>
+            <ol>
+              <li>A distância é obtida a partir da origem e do destino;</li>
+              <li>Multiplica-se essa distância por um valor de referência por quilómetro;</li>
+              <li>O custo total é dividido por todas as pessoas no carro, incluindo o condutor.</li>
+            </ol>
+            <p>
+              Como valor de referência, propõe-se 0,40&nbsp;€ por quilómetro, que é o valor fixado para
+              a compensação por deslocação e viatura própria em Portugal e que cobre combustível e
+              desgaste do veículo
+              (<a href="https://www.occ.pt/pt-pt/noticias/irs-ajudas-de-custo-6" target="_blank" rel="noopener">Ordem dos Contabilistas Certificados (OCC), 2026</a>).
+            </p>
+          </div>
+        </div>
+
+        <!-- Fórmula (esquerda) e simulador (direita). O simulador é controlado por js/preco.js -->
+        <div class="row g-4 mb-5">
+          <div class="col-lg-6">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <p class="mb-2">
+                  Sendo <em>d</em> a distância em quilómetros, <em>v</em> o valor por quilómetro e
+                  <em>n</em> o número de passageiros, o preço por passageiro dá-se na forma:
+                </p>
+                <div class="formula">
+                  <math display="block">
+                    <mrow>
+                      <mtext>Preço por passageiro</mtext>
+                      <mo>=</mo>
+                      <mfrac>
+                        <mrow><mi>d</mi><mo>·</mo><mi>v</mi></mrow>
+                        <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow>
+                      </mfrac>
+                    </mrow>
+                  </math>
+                </div>
+                <p class="small text-muted mb-0">
+                  Exemplo: uma viagem de 10&nbsp;km com 3 passageiros teria um custo total de
+                  10 × 0,40&nbsp;€ = 4,00&nbsp;€, e cada passageiro paga 4,00&nbsp;€ / 4 =
+                  1,00&nbsp;€. O condutor pode sempre optar por oferecer a boleia gratuitamente.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <h4 class="h6 text-uppercase text-muted mb-1">Simulador</h4>
+                <p class="small text-muted">
+                  Experimenta com os valores de uma viagem (valor de referência: 0,40&nbsp;€ por
+                  quilómetro).
+                </p>
+                <div class="row g-3 mb-3">
+                  <div class="col-6">
+                    <label for="sim-distancia" class="form-label small">Distância (km)</label>
+                    <input type="number" id="sim-distancia" class="form-control" min="1" max="200" step="1" value="10" />
+                  </div>
+                  <div class="col-6">
+                    <label for="sim-passageiros" class="form-label small">Passageiros (n)</label>
+                    <select id="sim-passageiros" class="form-select">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3" selected>3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="sim-resultado">
+                  <div>
+                    <span class="small text-muted">Custo total</span>
+                    <strong id="sim-total">4,00&nbsp;€</strong>
+                  </div>
+                  <div>
+                    <span class="small text-muted">Cada passageiro paga</span>
+                    <strong id="sim-preco">1,00&nbsp;€</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5.2 Pagamento -->
+        <h3 class="subtitulo">Pagamento simples e sem comissões</h3>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <h4 class="h6">Pagamento na reserva</h4>
+                <p class="mb-0 text-muted">
+                  O passageiro tem acesso ao preço da viagem antes de efetuar a reserva, realizando o
+                  pagamento através da plataforma no momento da mesma. O montante fica temporariamente
+                  retido pela plataforma, sendo posteriormente transferido para o condutor apenas após
+                  a realização da viagem. Este mecanismo procura garantir maior segurança e confiança
+                  para ambas as partes.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <h4 class="h6">Sem comissões</h4>
+                <p class="mb-0 text-muted">
+                  A plataforma não cobra qualquer comissão pelas viagens, não tendo fins lucrativos
+                  para os seus desenvolvedores. O seu único propósito é facilitar a mobilidade dos
+                  estudantes promovendo a partilha de viagens, a redução dos custos de deslocação e o
+                  espírito de entreajuda.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5.3 Cancelamentos e reembolsos -->
+        <h3 class="subtitulo">Cancelamentos e reembolsos</h3>
+        <ul class="list-group shadow-sm">
+            <li class="list-group-item d-flex justify-content-between align-items-center gap-3 py-3">
+              <div>
+                <div>O condutor cancela a boleia</div>
+              </div>
+              <span class="badge text-bg-success flex-shrink-0">Reembolso total</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center gap-3 py-3">
+              <div>
+                <div>O passageiro cancela com 24 horas de antecedência</div>
+              </div>
+              <span class="badge text-bg-success flex-shrink-0">Reembolso total</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center gap-3 py-3">
+              <div>
+                <div>O passageiro cancela depois desse prazo</div>
+              <div class="small text-muted">O valor não é reembolsado e segue para o condutor, que reservou o lugar.</div>
+              </div>
+              <span class="badge text-bg-danger flex-shrink-0">Sem reembolso</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center gap-3 py-3">
+              <div>
+                <div>A boleia não se realiza por motivo imputável ao condutor</div>
+              </div>
+              <span class="badge text-bg-success flex-shrink-0">Reembolso total</span>
+            </li>
+        </ul>
+
+        <!-- 5.4 Segurança e responsabilidade: 4 medidas + responsabilidade do condutor -->
+        <h3 class="subtitulo">Viaja com confiança</h3>
+        <p class="mb-4">A segurança assenta em quatro medidas:</p>
+        <div class="row g-4 mb-4">
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body p-4 d-flex gap-3 align-items-start">
+                <div class="step flex-shrink-0 m-0">1</div>
+                <p class="mb-0">Acesso exclusivo com email institucional do ISEP, o que garante que todos os utilizadores são alunos.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body p-4 d-flex gap-3 align-items-start">
+                <div class="step flex-shrink-0 m-0">2</div>
+                <p class="mb-0">Perfis com nome e curso, e avaliações mútuas após cada viagem.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body p-4 d-flex gap-3 align-items-start">
+                <div class="step flex-shrink-0 m-0">3</div>
+                <p class="mb-0">Pontos de encontro predefinidos junto ao campus.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body p-4 d-flex gap-3 align-items-start">
+                <div class="step flex-shrink-0 m-0">4</div>
+                <p class="mb-0">Possibilidade de denunciar utilizadores, com suspensão da conta em caso de comportamento indevido.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="callout">
+          <p class="mb-2">
+            Quanto à responsabilidade, o condutor declara no registo que possui carta de condução e
+            seguro automóvel válido, e é responsável pela condução e pelo veículo.
+          </p>
+          <p class="mb-0">
+            Estas regras constarão dos termos de utilização, que cada utilizador aceita no registo.
+          </p>
+        </div>
+      </div>
+    </section>
+
