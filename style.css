@@ -1,6 +1,12 @@
+:root{
+    --pag-sem-nav: calc(100vh - 65px);
+    --cor-primaria: #a6192e;
+    --cor-primaria-hover: #771423;
+}
+
 .hero{
     display: flex;
-    height: calc(100vh - 65px);
+    height: var(--pag-sem-nav);
 }
 
 .hero-esq,
@@ -26,13 +32,13 @@
     border: none;
     border-radius: 1.5rem;
     cursor: pointer;
-    background-color: #a6192e;
+    background-color: var(--cor-primaria);
     color: white;
     text-decoration: none;
 }
 
 .procurar-btn:hover{
-    background-color: #771423;
+    background-color: var(--cor-primaria-hover);
 }
 
 .avatar-sm{
@@ -59,18 +65,55 @@
     text-decoration: none;
 }
 
-.login-form{
-    display: flex;
-    justify-content: center;
-    margin: 150px;
-    user-select: none;
+.login-container{
+    min-height: var(--pag-sem-nav);
 }
 
-.login-input{
-    width: 600px !important;
+.login-card{
+    width: 100%;
+    max-width: 500px;
+    min-height: 500px;
+    border-radius: 1.5rem;
 }
 
-main{
-    user-select: none;
+
+.login-icone{
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: var(--cor-primaria);
 }
 
+.btn-boleia{
+    background-color: var(--cor-primaria);
+    color: white;
+    font-weight: 600;
+}
+
+#mostrarPwd:hover{
+    color: rgb(0, 0, 0);
+}
+
+.btn-boleia:hover{
+    background-color: var(--cor-primaria-hover);
+    color: white;
+}
+
+.login-card .input-group .btn{
+    border-color: var(--bs-border-color);
+    background-color: var(--bs-tertiary-bg);
+}
+
+.login-card .input-group-text{
+    background-color: white;
+    border-right: none;
+}
+
+.login-card .input-group .form-control{
+    border-left: none;
+}

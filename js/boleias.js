@@ -6,14 +6,14 @@ const boleias = [
     { id: "2", condutor: "Ana",   iniciais: "AM", origem: "Maia",       hora: "08:30", lugares: 1, preco: 2.0, agendada: false },
     { id: "3", condutor: "Rui",   iniciais: "RC", origem: "Gondomar",   hora: "09:00", lugares: 0, preco: 1.5, agendada: false },
     { id: "4", condutor: "Inês",  iniciais: "IF", origem: "Matosinhos", hora: "08:15", lugares: 2, preco: 2.0, agendada: false },
-    { id: "5", condutor: "José",   iniciais: "JL", origem: "Braga",   hora: "07:30", lugares: 3, preco: 4.5, agendada: false }
+    { id: "5", condutor: "José",  iniciais: "JL", origem: "Braga",      hora: "07:30", lugares: 3, preco: 4.5, agendada: false }
 ];
 
 //ao abrir, guarda as boleias de exemplo no localStorage
-if (localStorage.getItem(CHAVE) === null) guardarTodas(boleias);
+if (localStorage.getItem(CHAVE) === null) guardarTodas(boleias, CHAVE);
 
 //mostra todas as boleias, lidas do localStorage
-const todas = lerBoleias();
+const todas = lerLocalStorage(CHAVE);
 
 //const que guarda a div onde se vão colocar os cards
 const cards = document.getElementById("resultados");
@@ -59,7 +59,7 @@ function reservar(id){
         boleia.agendada = true;
         boleia.lugares--;
     }
-    guardarTodas(todas);
+    guardarTodas(todas, CHAVE);
     pesquisar();
 }
 
