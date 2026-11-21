@@ -4,41 +4,18 @@
     --cor-primaria-hover: #771423;
 }
 
-.hero{
+/* pág inicial: estreita e ao centro, também no computador */
+.inicio{
+    max-width: 560px;
+    min-height: var(--pag-sem-nav);
     display: flex;
-    height: var(--pag-sem-nav);
-}
-
-.hero-esq,
-.hero-dir{
-    flex: 1;
-    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    user-select: none;
 }
 
-.hero-logo{
-    width: 100%;
-    max-width: 420px;
-}
-
-.procurar-btn{
-    display: flex;
-    align-items: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    padding: 1.5rem 5rem;
-    border: none;
-    border-radius: 1.5rem;
-    cursor: pointer;
-    background-color: var(--cor-primaria);
-    color: white;
-    text-decoration: none;
-}
-
-.procurar-btn:hover{
-    background-color: var(--cor-primaria-hover);
+.logo-inicio{
+    width: 28px;
+    height: 28px;
 }
 
 .avatar-sm{
@@ -138,12 +115,6 @@
     letter-spacing: 2px;
 }
 
-[data-bs-theme="dark"] .hero-logo{
-    background-color: #fff;
-    border-radius: 1.5rem;
-    padding: 1rem;
-}
-
 /* deixa o texto das linhas das boleias encolher em vez de empurrar o preço para fora do ecrã */
 .min-w-0{
     min-width: 0;
@@ -232,4 +203,36 @@
     background: var(--cor-primaria);
     border-color: var(--cor-primaria);
     color: #fff;
+}
+
+/* estrelas para avaliar (os inputs estão de 5 para 1 e o row-reverse põe-nos de 1 para 5) */
+.estrelas-input{
+    display: inline-flex;
+    flex-direction: row-reverse;
+    gap: 2px;
+}
+
+.estrelas-input input{
+    position: absolute;
+    opacity: 0;
+    width: 0;
+}
+
+.estrelas-input label{
+    font-size: 1.75rem;
+    line-height: 1;
+    color: var(--bs-secondary-color);
+    cursor: pointer;
+}
+
+/* acende a estrela escolhida e as que estão antes dela (e o mesmo ao passar o rato) */
+.estrelas-input input:checked ~ label,
+.estrelas-input label:hover,
+.estrelas-input label:hover ~ label{
+    color: #e0a800;
+}
+
+.estrelas-input input:focus-visible + label{
+    outline: 2px solid var(--cor-primaria);
+    border-radius: 4px;
 }

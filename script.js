@@ -18,6 +18,10 @@ const CHAVE_SESSAO = "utilizador";
 //nome da chave onde fica guardado o tema escolhido
 const CHAVE_TEMA = "tema";
 
+//nomes das chaves das avaliações e das denúncias
+const CHAVE_AVALIACOES = "avaliacoes";
+const CHAVE_DENUNCIAS = "denuncias";
+
 //                                              | dados fixos |
 
 //preço por quilómetro
@@ -41,20 +45,36 @@ const PONTOS_ENCONTRO = [
 function dataDaquiA(dias) {
     const data = new Date();
     data.setDate(data.getDate() + dias);
-    return data.toISOString().slice(0, 10);
+    return paraTextoData(data);
 }
+
+//Date -> "AAAA-MM-DD" (na hora de cá, não em UTC)
+function paraTextoData(d) {
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+//data e hora de daqui a X minutos (para a boleia de exemplo que está quase a sair)
+function daquiAMinutos(minutos) {
+    const d = new Date(Date.now() + minutos * 60 * 1000);
+    return { data: paraTextoData(d), hora: `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}` };
+}
+const QUASE_A_SAIR = daquiAMinutos(25);
 
 //boleias de exemplo (os km são os que seriam calculados na publicação)
 const BOLEIAS_EXEMPLO = [
-    { id: "1", condutor: "1260809@isep.ipp.pt", de: "Gaia",          para: "ISEP",          data: dataDaquiA(1), hora: "08:00", lugares: 3, km: 9, pontoEncontro: "Metro IPO",                        gratuita: false, passageiros: ["1261485@isep.ipp.pt"], cancelada: false },
-    { id: "2", condutor: "1260673@isep.ipp.pt", de: "Maia",          para: "ISEP",          data: dataDaquiA(1), hora: "08:30", lugares: 2, km: 9, pontoEncontro: "Entrada principal do ISEP",        gratuita: false, passageiros: [],                      cancelada: false },
-    { id: "3", condutor: "1261485@isep.ipp.pt", de: "ISEP",          para: "Gondomar",      data: dataDaquiA(2), hora: "18:00", lugares: 3, km: 10, pontoEncontro: "Asprela",                          gratuita: false, passageiros: ["1260809@isep.ipp.pt"], cancelada: false },
-    { id: "4", condutor: "1260809@isep.ipp.pt", de: "Matosinhos",    para: "ISEP",          data: dataDaquiA(3), hora: "09:00", lugares: 1, km: 9, pontoEncontro: "Metro IPO",                        gratuita: true,  passageiros: [],                      cancelada: false },
-    { id: "5", condutor: "1260673@isep.ipp.pt", de: "Braga",         para: "ISEP",          data: dataDaquiA(2), hora: "07:30", lugares: 4, km: 55, pontoEncontro: "Entrada principal do ISEP",        gratuita: false, passageiros: ["1261271@isep.ipp.pt"], cancelada: false },
-    { id: "6", condutor: "1261271@isep.ipp.pt", de: "ISEP",          para: "Porto (Baixa)", data: dataDaquiA(4), hora: "17:30", lugares: 3, km: 4, pontoEncontro: "Metro IPO",                        gratuita: false, passageiros: ["1260673@isep.ipp.pt"], cancelada: false },
-    { id: "7", condutor: "1261485@isep.ipp.pt", de: "Valongo",       para: "ISEP",          data: dataDaquiA(2), hora: "08:15", lugares: 3, km: 12, pontoEncontro: "Entrada principal do ISEP",        gratuita: false, passageiros: ["1261271@isep.ipp.pt"], cancelada: true },
-    { id: "8", condutor: "1260809@isep.ipp.pt", de: "Gaia",          para: "ISEP",          data: dataDaquiA(-3), hora: "08:00", lugares: 3, km: 9, pontoEncontro: "Metro IPO",                       gratuita: false, passageiros: ["1261271@isep.ipp.pt"], cancelada: false },
-    { id: "9", condutor: "1261271@isep.ipp.pt", de: "ISEP",          para: "Matosinhos",    data: dataDaquiA(-2), hora: "18:00", lugares: 3, km: 9, pontoEncontro: "Asprela",                         gratuita: false, passageiros: ["1260809@isep.ipp.pt", "1261485@isep.ipp.pt"], cancelada: false }
+    { id: "1", condutor: "1260809@isep.ipp.pt", de: "Gaia",          para: "ISEP",          data: dataDaquiA(1), hora: "08:00", lugares: 3, km: 9, pontoEncontro: "Metro IPO",                        gratuita: false, passageiros: ["1261485@isep.ipp.pt"], pagos: [], cancelada: false },
+    { id: "2", condutor: "1260673@isep.ipp.pt", de: "Maia",          para: "ISEP",          data: dataDaquiA(1), hora: "08:30", lugares: 2, km: 9, pontoEncontro: "Entrada principal do ISEP",        gratuita: false, passageiros: [], pagos: [],                      cancelada: false },
+    { id: "3", condutor: "1261485@isep.ipp.pt", de: "ISEP",          para: "Gondomar",      data: dataDaquiA(2), hora: "18:00", lugares: 3, km: 10, pontoEncontro: "Asprela",                          gratuita: false, passageiros: ["1260809@isep.ipp.pt"], pagos: [], cancelada: false },
+    { id: "4", condutor: "1260809@isep.ipp.pt", de: "Matosinhos",    para: "ISEP",          data: dataDaquiA(3), hora: "09:00", lugares: 1, km: 9, pontoEncontro: "Metro IPO",                        gratuita: true,  passageiros: [], pagos: [],                      cancelada: false },
+    { id: "5", condutor: "1260673@isep.ipp.pt", de: "Braga",         para: "ISEP",          data: dataDaquiA(2), hora: "07:30", lugares: 4, km: 55, pontoEncontro: "Entrada principal do ISEP",        gratuita: false, passageiros: ["1261271@isep.ipp.pt"], pagos: [], cancelada: false },
+    { id: "6", condutor: "1261271@isep.ipp.pt", de: "ISEP",          para: "Porto (Baixa)", data: dataDaquiA(4), hora: "17:30", lugares: 3, km: 4, pontoEncontro: "Metro IPO",                        gratuita: false, passageiros: ["1260673@isep.ipp.pt"], pagos: [], cancelada: false },
+    { id: "7", condutor: "1261485@isep.ipp.pt", de: "Valongo",       para: "ISEP",          data: dataDaquiA(2), hora: "08:15", lugares: 3, km: 12, pontoEncontro: "Entrada principal do ISEP",        gratuita: false, passageiros: ["1261271@isep.ipp.pt"], pagos: [], cancelada: true },
+    { id: "8", condutor: "1260809@isep.ipp.pt", de: "Gaia",          para: "ISEP",          data: dataDaquiA(-3), hora: "08:00", lugares: 3, km: 9, pontoEncontro: "Metro IPO",                       gratuita: false, passageiros: ["1261271@isep.ipp.pt"], pagos: ["1261271@isep.ipp.pt"], cancelada: false },
+    { id: "9", condutor: "1261271@isep.ipp.pt", de: "ISEP",          para: "Matosinhos",    data: dataDaquiA(-2), hora: "18:00", lugares: 3, km: 9, pontoEncontro: "Asprela",                         gratuita: false, passageiros: ["1260809@isep.ipp.pt", "1261485@isep.ipp.pt"], pagos: ["1260809@isep.ipp.pt", "1261485@isep.ipp.pt"], cancelada: false },
+    //exemplo do relatório: 10 km e 3 passageiros -> 1,00 € por passageiro
+    { id: "10", condutor: "1261271@isep.ipp.pt", de: "ISEP",         para: "Rio Tinto",     data: dataDaquiA(3), hora: "18:30", lugares: 3, km: 10, pontoEncontro: "Entrada principal do ISEP",       gratuita: false, passageiros: ["1260809@isep.ipp.pt", "1260673@isep.ipp.pt", "1261485@isep.ipp.pt"], pagos: [], cancelada: false },
+    //sai daqui a 25 min: o Hugo já pode pagar para confirmar
+    { id: "11", condutor: "1260809@isep.ipp.pt", de: "Maia",         para: "ISEP",          data: QUASE_A_SAIR.data, hora: QUASE_A_SAIR.hora, lugares: 3, km: 9, pontoEncontro: "Metro IPO",              gratuita: false, passageiros: ["1261271@isep.ipp.pt"], pagos: [], cancelada: false }
 ];
 
 //lê as boleias guardadas no localStorage
@@ -68,7 +88,12 @@ function lerBoleias() {
     }
 
     //converte o texto JSON de volta para array
-    return JSON.parse(texto);
+    const boleias = JSON.parse(texto);
+
+    //boleias guardadas antes de haver pagamentos não têm a lista dos pagos
+    boleias.forEach(b => b.pagos = b.pagos ?? []);
+
+    return boleias;
 }
 
 //acrescenta uma boleia às publicadas
@@ -229,6 +254,25 @@ function porData(a, b) {
     return momentoDaBoleia(a) - momentoDaBoleia(b);
 }
 
+//preço final por passageiro: com os passageiros que reservaram
+function precoFinal(boleia) {
+    if (boleia.gratuita) {
+        return 0;
+    }
+    return precoPorPassageiro(kmDaBoleia(boleia), boleia.passageiros.length);
+}
+
+//nos últimos 30 min antes da viagem o passageiro paga para confirmar
+function emPeriodoDePagamento(boleia) {
+    const horas = horasAteViagem(boleia);
+    return horas <= 0.5 && horas > 0;
+}
+
+//true se este passageiro já pagou
+function pagou(boleia, email) {
+    return boleia.gratuita || boleia.pagos.includes(email);
+}
+
 
 //                                              | janela de confirmação |
 
@@ -242,9 +286,12 @@ function confirmar(titulo, textoHTML, textoBotao, aoConfirmar) {
 
     const janela = bootstrap.Modal.getOrCreateInstance(document.getElementById("modalConfirmacao"));
 
+    //se o aoConfirmar devolver false (falta preencher algo) a janela fica aberta
     botao.onclick = () => {
+        if (aoConfirmar() === false) {
+            return;
+        }
         janela.hide();
-        aoConfirmar();
     };
 
     janela.show();
@@ -263,8 +310,8 @@ function mostrarAviso(texto) {
 function pedirReserva(boleia, email, depois) {
     const texto = boleia.gratuita
         ? "<p class=\"mb-0\">Esta boleia é gratuita. Não há nada a pagar.</p>"
-        : `<p>Vamos manter <strong>${formatarPreco(precoMaximo(boleia))}</strong> (o preço máximo por passageiro).</p>
-           <p class="mb-0 small text-body-secondary">As reservas fecham 30 minutos antes da viagem. Nessa altura cobramos o preço final. O valor fica retido e só é transferido para o condutor depois da viagem.</p>`;
+        : `<p>Vamos cativar <strong>${formatarPreco(precoMaximo(boleia))}</strong> (o preço máximo por passageiro).</p>
+           <p class="mb-0 small text-body-secondary">As reservas fecham 30 minutos antes da viagem. A partir daí pagas o preço final em "As minhas viagens" para confirmar o lugar. O valor fica retido e só é transferido para o condutor depois da viagem.</p>`;
 
     confirmar("Reservar lugar", texto, "Reservar", () => {
         boleia.passageiros.push(email);
@@ -289,6 +336,7 @@ function pedirCancelamentoReserva(boleia, email, depois) {
 
     confirmar("Cancelar reserva", texto, "Cancelar reserva", () => {
         boleia.passageiros = boleia.passageiros.filter(e => e !== email);
+        boleia.pagos = boleia.pagos.filter(e => e !== email);
         guardarTodas(lerBoleiasAtualizadas(boleia));
         mostrarAviso(boleia.gratuita || comReembolso ? "Reserva cancelada. Reembolso total." : "Reserva cancelada, sem reembolso.");
         depois();
@@ -310,7 +358,71 @@ function pedirCancelamentoBoleia(boleia, depois) {
     });
 }
 
+//pede confirmação e o passageiro paga o preço final (simulado)
+function pedirPagamento(boleia, email, depois) {
+    const n = boleia.passageiros.length;
+    const texto = `<p>Preço final: <strong>${formatarPreco(precoFinal(boleia))}</strong> (${n === 1 ? "1 passageiro" : `${n} passageiros`}).</p>
+        <p class="mb-0 small text-body-secondary">O resto do valor cativado é libertado. Este valor fica retido e só é transferido para o condutor depois da viagem.</p>`;
+
+    confirmar("Pagar e confirmar", texto, "Pagar", () => {
+        boleia.pagos.push(email);
+        guardarTodas(lerBoleiasAtualizadas(boleia));
+        mostrarAviso("Pagamento feito. Lugar confirmado.");
+        depois();
+    });
+}
+
 //lê as boleias guardadas e substitui a que foi alterada
 function lerBoleiasAtualizadas(alterada) {
     return lerBoleias().map(b => b.id === alterada.id ? alterada : b);
+}
+
+
+//                                              | avaliações e denúncias |
+
+//lê as avaliações feitas no site ({ boleia, de, para, nota })
+function lerAvaliacoes() {
+    return JSON.parse(localStorage.getItem(CHAVE_AVALIACOES) ?? "[]");
+}
+
+//guarda uma avaliação nova
+function guardarAvaliacao(avaliacao) {
+    const avaliacoes = lerAvaliacoes();
+    avaliacoes.push(avaliacao);
+    localStorage.setItem(CHAVE_AVALIACOES, JSON.stringify(avaliacoes));
+}
+
+//todas as notas de uma pessoa: as da lista de utilizadores mais as dadas no site
+function avaliacoesDe(email) {
+    const conta = contaPorEmail(email);
+    const iniciais = conta === undefined ? [] : conta.avaliacoes;
+    const novas = lerAvaliacoes().filter(a => a.para === email).map(a => a.nota);
+    return [...iniciais, ...novas];
+}
+
+//média das notas de uma pessoa (null se ainda não tem)
+function mediaDe(email) {
+    const notas = avaliacoesDe(email);
+    if (notas.length === 0) {
+        return null;
+    }
+    return notas.reduce((soma, nota) => soma + nota, 0) / notas.length;
+}
+
+//"★ 4,3" para mostrar ao lado do nome (vazio se não tiver avaliações)
+function textoMedia(email) {
+    const media = mediaDe(email);
+    return media === null ? "" : `★ ${media.toFixed(1).replace(".", ",")}`;
+}
+
+//true se esta pessoa já avaliou aquela pessoa nesta boleia
+function jaAvaliou(boleiaId, de, para) {
+    return lerAvaliacoes().some(a => a.boleia === boleiaId && a.de === de && a.para === para);
+}
+
+//guarda uma denúncia (simulado: só fica no localStorage)
+function guardarDenuncia(denuncia) {
+    const denuncias = JSON.parse(localStorage.getItem(CHAVE_DENUNCIAS) ?? "[]");
+    denuncias.push(denuncia);
+    localStorage.setItem(CHAVE_DENUNCIAS, JSON.stringify(denuncias));
 }

@@ -1,5 +1,10 @@
 //                                              | login.js |
 
+//se já tiver login feito não precisa de estar aqui
+if (utilizadorAtual() !== null) {
+    window.location.href = "Perfil.html";
+}
+
 //consts que guardam o campo da palavra-passe e ao botão do olho
 const campoPwd = document.getElementById("pwd");
 const botaoOlho = document.getElementById("mostrarPwd");

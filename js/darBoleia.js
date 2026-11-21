@@ -218,6 +218,7 @@ function publicar(evento) {
         pontoEncontro: campoPonto.value,
         gratuita: switchGratuita.checked,
         passageiros: [],
+        pagos: [],
         cancelada: false
     };
 

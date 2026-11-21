@@ -51,9 +51,9 @@ function mostrar(lista) {
         <div class="list-group-item d-flex align-items-center gap-3 py-3 ${reservada ? "list-group-item-success" : ""}">
             <span class="avatar" aria-hidden="true">${condutor.nome[0]}${condutor.apelido[0]}</span>
             <div class="flex-grow-1 min-w-0">
-                <p class="fw-semibold mb-0">${b.de} → ${b.para} <span class="fw-normal text-body-secondary">· ${formatarData(b.data)} às ${b.hora}</span></p>
+                <p class="fw-semibold mb-0">${b.de} → ${b.para} <span class="fw-normal text-body-secondary">- ${formatarData(b.data)} às ${b.hora}</span></p>
                 <p class="small mb-0 ${reservada ? "text-success-emphasis" : "text-body-secondary"}">
-                    ${condutor.nome} · ${b.pontoEncontro} · ${estado}
+                    ${condutor.nome} ${textoMedia(b.condutor)} - ${b.pontoEncontro} - ${estado}
                 </p>
             </div>
             <div class="text-end">

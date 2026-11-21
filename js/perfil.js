@@ -22,7 +22,7 @@ function mostrarPerfil(conta) {
     document.getElementById("dadoCurso").textContent = conta.curso;
     document.getElementById("dadoEmail").textContent = conta.email;
 
-    mostrarAvaliacoes(conta.avaliacoes);
+    mostrarAvaliacoes(avaliacoesDe(conta.email));
 }
 
 //mostra a média das avaliações, as estrelas e quantas avaliações há
