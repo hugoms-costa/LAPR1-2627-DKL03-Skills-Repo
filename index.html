@@ -4,15 +4,23 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>BoleiaIsep</title>
+        <script>
+            const tema = localStorage.getItem("tema") ?? "light";
+            document.documentElement.setAttribute("data-bs-theme", tema);
+        </script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">BoleiaISEP</a>
-                <a class="login ms-auto me-2 order-lg-last" href="html/Login.html" aria-label="A minha conta">
-                    <span class="avatar avatar-sm" style="background:#a6192e" aria-hidden="true">HC</span>
+                <button type="button" class="btn btn-link nav-link px-2 ms-auto order-lg-last" id="alternarTema" aria-label="Mudar para modo escuro">
+                    <i class="bi bi-moon" id="iconeTema" aria-hidden="true"></i>
+                </button>
+                <a class="login me-2 order-lg-last" href="html/Login.html" aria-label="Entrar">
+                    <span class="avatar avatar-sm avatar-login" aria-hidden="true">Login</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Abrir menu">
                     <span class="navbar-toggler-icon"></span>
@@ -24,6 +32,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="html/Boleias.html">Boleias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="html/Minhas_Viagens.html">As minhas viagens</a>
                         </li>
                     </ul>
                 </div>
@@ -43,5 +54,6 @@
             </div>
         </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
     </body>
 </html>

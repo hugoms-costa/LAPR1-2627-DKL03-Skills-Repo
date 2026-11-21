@@ -45,11 +45,12 @@
     width: 32px;
     height: 32px;
     font-size: .65rem;
-    border: 2px solid #fff;
+    border: 2px solid var(--bs-body-bg);
     user-select: none;
 }
 
 .avatar{
+    background-color: var(--cor-primaria);
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -84,7 +85,7 @@
     place-items: center;
     font-size: 1.5rem;
     border-radius: 1rem;
-    background-color: white;
+    background-color: var(--bs-body-bg);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     color: var(--cor-primaria);
 }
@@ -96,7 +97,7 @@
 }
 
 #mostrarPwd:hover{
-    color: rgb(0, 0, 0);
+    color: var(--bs-emphasis-color);
 }
 
 .btn-boleia:hover{
@@ -110,10 +111,125 @@
 }
 
 .login-card .input-group-text{
-    background-color: white;
+    background-color: var(--bs-body-bg);
     border-right: none;
 }
 
 .login-card .input-group .form-control{
     border-left: none;
+}
+
+.avatar.avatar-login{
+    width: auto;
+    padding: 0 .75rem;
+    border-radius: 999px;
+    font-size: .8rem;
+}
+
+.avatar-lg{
+    width: 56px;
+    height: 56px;
+    font-size: 1.25rem;
+}
+
+.estrelas{
+    color: #e0a800;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+}
+
+[data-bs-theme="dark"] .hero-logo{
+    background-color: #fff;
+    border-radius: 1.5rem;
+    padding: 1rem;
+}
+
+/* deixa o texto das linhas das boleias encolher em vez de empurrar o preço para fora do ecrã */
+.min-w-0{
+    min-width: 0;
+}
+
+/* largura máxima do formulário de dar boleia */
+.form-boleia{
+    max-width: 560px;
+}
+
+/* relógio da hora (flatpickr) no modo escuro: usa as cores do Bootstrap */
+[data-bs-theme="dark"] .flatpickr-calendar,
+[data-bs-theme="dark"] .flatpickr-time input,
+[data-bs-theme="dark"] .flatpickr-time .flatpickr-am-pm,
+[data-bs-theme="dark"] .flatpickr-time .flatpickr-time-separator{
+    background: var(--bs-tertiary-bg);
+    color: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .flatpickr-calendar{
+    box-shadow: 0 0 0 1px var(--bs-border-color);
+}
+
+[data-bs-theme="dark"] .flatpickr-calendar::before,
+[data-bs-theme="dark"] .flatpickr-calendar::after{
+    display: none;
+}
+
+[data-bs-theme="dark"] .flatpickr-time input:hover,
+[data-bs-theme="dark"] .flatpickr-time input:focus{
+    background: var(--bs-secondary-bg);
+}
+
+[data-bs-theme="dark"] .numInputWrapper span.arrowUp::after{
+    border-bottom-color: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .numInputWrapper span.arrowDown::after{
+    border-top-color: var(--bs-body-color);
+}
+
+/* lista de sugestões da localidade (por cima do resto do formulário) */
+.sugestoes{
+    z-index: 10;
+    top: 100%;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+/* calendário (flatpickr): o dia escolhido com a cor do BoleiaISEP */
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover{
+    background: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+/* calendário no modo escuro */
+[data-bs-theme="dark"] .flatpickr-months .flatpickr-month,
+[data-bs-theme="dark"] .flatpickr-current-month .flatpickr-monthDropdown-months,
+[data-bs-theme="dark"] span.flatpickr-weekday,
+[data-bs-theme="dark"] .flatpickr-day{
+    background: transparent;
+    color: var(--bs-body-color);
+    fill: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .flatpickr-months .flatpickr-prev-month svg,
+[data-bs-theme="dark"] .flatpickr-months .flatpickr-next-month svg{
+    fill: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .flatpickr-day:hover{
+    background: var(--bs-secondary-bg);
+    border-color: var(--bs-secondary-bg);
+}
+
+[data-bs-theme="dark"] .flatpickr-day.flatpickr-disabled,
+[data-bs-theme="dark"] .flatpickr-day.prevMonthDay,
+[data-bs-theme="dark"] .flatpickr-day.nextMonthDay{
+    color: var(--bs-secondary-color);
+    opacity: .5;
+}
+
+[data-bs-theme="dark"] .flatpickr-day.selected,
+[data-bs-theme="dark"] .flatpickr-day.selected:hover{
+    background: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    color: #fff;
 }

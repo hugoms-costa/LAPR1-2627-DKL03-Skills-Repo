@@ -1,83 +1,105 @@
 //                                              | boleias.js |
 
-//criação de um array estático de boleias
-const boleias = [
-    { id: "1", condutor: "Tiago", iniciais: "TS", origem: "Gaia",       hora: "08:00", lugares: 3, preco: 2.5, agendada: false},
-    { id: "2", condutor: "Ana",   iniciais: "AM", origem: "Maia",       hora: "08:30", lugares: 1, preco: 2.0, agendada: false },
-    { id: "3", condutor: "Rui",   iniciais: "RC", origem: "Gondomar",   hora: "09:00", lugares: 0, preco: 1.5, agendada: false },
-    { id: "4", condutor: "Inês",  iniciais: "IF", origem: "Matosinhos", hora: "08:15", lugares: 2, preco: 2.0, agendada: false },
-    { id: "5", condutor: "José",  iniciais: "JL", origem: "Braga",      hora: "07:30", lugares: 3, preco: 4.5, agendada: false }
-];
+//quem está ligado (null se ninguém fez login: pode ver as boleias, mas não reservar)
+const conta = utilizadorAtual();
 
-//ao abrir, guarda as boleias de exemplo no localStorage
-if (localStorage.getItem(CHAVE) === null) guardarTodas(boleias, CHAVE);
+//todas as boleias, lidas do localStorage
+const todas = lerBoleias();
 
-//mostra todas as boleias, lidas do localStorage
-const todas = lerLocalStorage(CHAVE);
-
-//const que guarda a div onde se vão colocar os cards
+//const que guarda a div onde se vão colocar as boleias
 const cards = document.getElementById("resultados");
 
-//const que guarda a div da pesquisa
+//const que guarda a barra de pesquisa
 const pesquisa = document.getElementById("pesquisa");
 
-//const que vê que boleias é que estão disponíveis
-const disponiveis = todas.filter(b => b.lugares > 0 || b.agendada);
+//const que guarda o parágrafo onde aparece quantas boleias há
+const contagem = document.getElementById("contagem");
 
-//função para mostrar um card para cada elemento da lista
+//true se quem está ligado reservou esta boleia
+function souPassageiro(boleia) {
+    return conta !== null && boleia.passageiros.includes(conta.email);
+}
+
+//boleias que aparecem: não canceladas, que não são minhas, e com lugares (ou reservadas por mim)
+//ordenadas por data e hora
+function visiveis() {
+    return todas
+        .filter(b => !b.cancelada)
+        .filter(b => reservasAbertas(b))
+        .filter(b => conta === null || b.condutor !== conta.email)
+        .filter(b => lugaresLivres(b) > 0 || souPassageiro(b))
+        .sort((a, b) => (a.data + a.hora).localeCompare(b.data + b.hora));
+}
+
+//função para mostrar uma linha da lista para cada boleia
 function mostrar(lista) {
+    //quantas boleias há (singular ou plural)
+    contagem.textContent = lista.length === 1 ? "1 boleia disponível" : `${lista.length} boleias disponíveis`;
+
     if (lista.length === 0){
-        cards.innerHTML = "<p><b>Não há boleias disponíveis</b></p>";
+        cards.innerHTML = `<p class="text-body-secondary mt-2">Não há boleias para essa zona.</p>`;
         return;
     }
 
-    cards.innerHTML = lista.map(b => `
-        <div class="card mb-3 ${b.agendada ? "border-success" : ""}">
-            <div class="card-body d-flex justify-content-between align-items-center">
-                <div>
-                    <h5 class="card-title">${b.condutor}</h5>
-                    <p class="card-text">${b.origem} → ISEP · ${b.hora}</p>
-                    <p class="card-text">${b.lugares === 1 ? b.lugares + " lugar" : b.lugares + " lugares"} · ${b.preco === 0.00 ? "Gratuito" : b.preco.toFixed(2) + "€"}</p>
-                </div>
-                <div>
-                    <button type="button" onclick="reservar('${b.id}')" class="btn btn-${!b.agendada ? "secondary" : "danger"}">${!b.agendada ? "Agendar" : "Cancelar"}</button>
-                </div>
-            </div>
-        </div>
-    `).join(""); //inicialmente não coloquei isto, pedi ajuda ao claude pq entre os cards apareciam ",". O .join("") junta os cards numa string só
-    }
+    cards.innerHTML = lista.map(b => {
+        const condutor = contaPorEmail(b.condutor);
+        const reservada = souPassageiro(b);
+        const livres = lugaresLivres(b);
+        const estado = reservada ? "Reservada por ti" : (livres === 1 ? "1 lugar livre" : `${livres} lugares livres`);
 
-function reservar(id){
-    const boleia = todas.find(b => b.id == id)
-    if (boleia.agendada) {
-        //já estava agendada, devolve o lugar
-        boleia.agendada = false;
-        boleia.lugares++;
-    } 
-    else {
-        //não estava agendada e ocupa um lugar
-        boleia.agendada = true;
-        boleia.lugares--;
-    }
-    guardarTodas(todas, CHAVE);
-    pesquisar();
+        return `
+        <div class="list-group-item d-flex align-items-center gap-3 py-3 ${reservada ? "list-group-item-success" : ""}">
+            <span class="avatar" aria-hidden="true">${condutor.nome[0]}${condutor.apelido[0]}</span>
+            <div class="flex-grow-1 min-w-0">
+                <p class="fw-semibold mb-0">${b.de} → ${b.para} <span class="fw-normal text-body-secondary">· ${formatarData(b.data)} às ${b.hora}</span></p>
+                <p class="small mb-0 ${reservada ? "text-success-emphasis" : "text-body-secondary"}">
+                    ${condutor.nome} · ${b.pontoEncontro} · ${estado}
+                </p>
+            </div>
+            <div class="text-end">
+                <p class="fw-semibold mb-1 text-nowrap">${b.gratuita ? "Gratuita" : "até " + formatarPreco(precoMaximo(b))}</p>
+                <button type="button" onclick="reservar('${b.id}')" class="btn btn-sm ${reservada ? "btn-outline-danger" : "btn-boleia"}">${reservada ? "Cancelar" : "Reservar"}</button>
+            </div>
+        </div>`;
+    }).join(""); //inicialmente não coloquei isto, pedi ajuda ao claude pq entre os cards apareciam ",". O .join("") junta os cards numa string só
 }
 
-//função para filtrar os cards de acordo com a pesquisa
+//reserva um lugar na boleia, ou cancela a reserva se já for passageiro (sempre com confirmação)
+function reservar(id){
+    //para reservar é preciso ter feito login
+    if (conta === null) {
+        window.location.href = "Login.html";
+        return;
+    }
+
+    const boleia = todas.find(b => b.id === id);
+    if (boleia === undefined) {
+        return;
+    }
+
+    //depois de confirmar, volta a ler as boleias guardadas e redesenha a lista
+    const depois = () => {
+        todas.splice(0, todas.length, ...lerBoleias());
+        pesquisar();
+    };
+
+    if (souPassageiro(boleia)) {
+        pedirCancelamentoReserva(boleia, conta.email, depois);
+    }
+    else if (lugaresLivres(boleia) > 0) {
+        pedirReserva(boleia, conta.email, depois);
+    }
+}
+
+//função para filtrar as boleias pela zona escrita na pesquisa (de ou para)
 function pesquisar() {
-    const pesquisaLow = pesquisa.value.toLowerCase();
-    const resultado = disponiveis.filter(b => b.origem.toLowerCase().includes(pesquisaLow));
+    const termo = pesquisa.value.toLowerCase();
+    const resultado = visiveis().filter(b => `${b.de} ${b.para}`.toLowerCase().includes(termo));
     mostrar(resultado);
 }
 
-//usa a função no nosso array das boleias disponíveis
-mostrar(disponiveis);
-
-//Coloca as boleias todas quando a página é aberta pela primera vez
+//mostra as boleias quando a página abre (com a pesquisa vazia aparecem todas)
 pesquisar();
 
-//quando o "input" (barra de pesquisa) é alterado, ativa a função pesquisar e filtra
+//quando a barra de pesquisa é alterada, filtra
 pesquisa.addEventListener("input", pesquisar);
-
-//Quando o "submit" (cards) é pressionado chama a função que reserva a boleia
-cards.addEventListener("submit", reservar);

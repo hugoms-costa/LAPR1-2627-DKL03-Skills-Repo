@@ -4,15 +4,24 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dar Boleia</title>
+        <script>
+            const tema = localStorage.getItem("tema") ?? "light";
+            document.documentElement.setAttribute("data-bs-theme", tema);
+        </script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
         <link rel="stylesheet" href="../style.css">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="../index.html">BoleiaISEP</a>
-                <a class="login ms-auto me-2 order-lg-last" href="Login.html" aria-label="A minha conta">
-                    <span class="avatar avatar-sm" style="background:#a6192e" aria-hidden="true">HC</span>
+                <button type="button" class="btn btn-link nav-link px-2 ms-auto order-lg-last" id="alternarTema" aria-label="Mudar para modo escuro">
+                    <i class="bi bi-moon" id="iconeTema" aria-hidden="true"></i>
+                </button>
+                <a class="login me-2 order-lg-last" href="Login.html" aria-label="Entrar">
+                    <span class="avatar avatar-sm avatar-login" aria-hidden="true">Login</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Abrir menu">
                     <span class="navbar-toggler-icon"></span>
@@ -25,64 +34,79 @@
                         <li class="nav-item">
                             <a class="nav-link" href="Boleias.html">Boleias</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Minhas_Viagens.html">As minhas viagens</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <main class="container mt-4">
+        <main class="container mt-4 mb-5">
+            <div class="form-boleia mx-auto">
+            <h1 class="h3 mb-3">Dar boleia</h1>
+
             <form id="formBoleia">
-                <div class="row g-3 mt-3">
-                    <div class="col">
-                        <label class="form-label" for="nome">Nome</label>
-                        <input type="text" required class="form-control" id="nome" placeholder="Escreve o teu nome" aria-label="First name">
+                <div class="row g-3 mb-3">
+                    <div class="col-12 col-sm-4">
+                        <label for="sentido" class="form-label">Sentido</label>
+                        <select id="sentido" class="form-select" required>
+                            <option value="ida">Para o ISEP</option>
+                            <option value="volta">Do ISEP</option>
+                        </select>
                     </div>
-                    <div class="col">
-                        <label class="form-label" for="apelido">Apelido</label>
-                        <input type="text" required id="apelido" class="form-control" placeholder="Escreve o teu apelido" aria-label="Last name">
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <label class="form-label" for="origem">Origem</label>
-                    <input type="text" required id="origem" class="form-control" placeholder="Local de Saída">
-                </div>
-                <div class="mt-3">
-                    <label for="hora" class="form-label">Hora de partida</label>
-                        <input type="time" id="hora" class="form-control"
-                            min="06:00" max="23:00" step="900" required>
-                </div>
-                <div class="mt-3">
-                    <label for="lugares" class="form-label">Número de lugares</label>
-                    <select id="lugares" class="form-select" required>
-                        <option value="">-------</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                    </select>
-                </div>
-                <div>
-                    <div>
-                        <label for="preco" class="form-label">Preço por pessoa (máx 10€)</label>
-                        <div class="input-group">
-                            <input type="number" id="preco" class="form-control"
-                                min="0" max="10" step="0.10" inputmode="decimal" required>
-                            <span class="input-group-text">€</span>
+                    <div class="col-12 col-sm-8">
+                        <label for="localidade" class="form-label" id="rotuloLocalidade">De onde partes?</label>
+                        <div class="position-relative">
+                            <input type="text" id="localidade" class="form-control" placeholder="Rua ou localidade. Ex.: Ermesinde" autocomplete="off" required>
+                            <div id="sugestoes" class="list-group position-absolute w-100 shadow-sm sugestoes d-none"></div>
                         </div>
+                        <div class="form-text" id="estadoLocalidade"></div>
                     </div>
-                    <div class="form-check form-switch mt-2">
-                        <input class="form-check-input" type="checkbox" role="switch" id="gratuita">
-                        <label class="form-check-label" for="gratuita">Boleia gratuita</label>
+                    <div class="col-12 col-sm-6">
+                        <label for="data" class="form-label">Data</label>
+                        <input type="text" id="data" class="form-control" placeholder="Escolhe a data" required>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <label for="hora" class="form-label">Hora</label>
+                        <input type="text" id="hora" class="form-control" placeholder="Escolhe a hora" required>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <label for="lugares" class="form-label">Lugares</label>
+                        <select id="lugares" class="form-select" required>
+                            <option value="">Escolhe</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <label for="pontoEncontro" class="form-label">Ponto de encontro</label>
+                        <select id="pontoEncontro" class="form-select" required></select>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-danger mt-4">Publicar</button>
+
+                <p class="mb-2">Preço máximo por passageiro: <span class="fw-semibold" id="precoMaximo">—</span> <span class="text-body-secondary small" id="distancia"></span></p>
+
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" role="switch" id="gratuita">
+                    <label class="form-check-label" for="gratuita">Boleia gratuita</label>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="cartaSeguro" required>
+                    <label class="form-check-label" for="cartaSeguro">Tenho carta de condução e seguro válidos</label>
+                </div>
+
+                <div id="erroBoleia" class="alert alert-danger d-none" role="alert"></div>
+
+                <button type="submit" class="btn btn-boleia px-4">Publicar</button>
             </form>
+            </div>
         </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/pt.js"></script>
     <script src="../script.js"></script>
     <script src="../js/darBoleia.js"></script>
     </body>
