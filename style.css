@@ -1,48 +1,33 @@
-.hero{
-    display: flex;
-    height: calc(100vh - 65px);
+:root{
+    --pag-sem-nav: calc(100vh - 65px);
+    --cor-primaria: #a6192e;
+    --cor-primaria-hover: #771423;
 }
 
-.hero-esq,
-.hero-dir{
-    flex: 1;
+/* pág inicial: estreita e ao centro, também no computador */
+.inicio{
+    max-width: 560px;
+    min-height: var(--pag-sem-nav);
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    user-select: none;
 }
 
-.hero-logo{
-    width: 100%;
-    max-width: 420px;
-}
-
-.procurar-btn{
-    display: inline-flex;
-    align-items: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    padding: 1.5rem 5rem;
-    border: none;
-    border-radius: 1.5rem;
-    cursor: pointer;
-    background-color: #a6192e;
-    color: white;
-}
-
-.procurar-btn:hover{
-    background-color: #771423;
+.logo-inicio{
+    width: 28px;
+    height: 28px;
 }
 
 .avatar-sm{
     width: 32px;
     height: 32px;
     font-size: .65rem;
-    border: 2px solid #fff;
+    border: 2px solid var(--bs-body-bg);
     user-select: none;
 }
 
 .avatar{
+    background-color: var(--cor-primaria);
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -58,13 +43,196 @@
     text-decoration: none;
 }
 
-.login-form{
-    display: flex;
-    justify-content: center;
-    margin: 150px;
-    user-select: none;
+.login-container{
+    min-height: var(--pag-sem-nav);
 }
 
-.login-input{
-    width: 600px !important;
+.login-card{
+    width: 100%;
+    max-width: 500px;
+    min-height: 500px;
+    border-radius: 1.5rem;
+}
+
+
+.login-icone{
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    background-color: var(--bs-body-bg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: var(--cor-primaria);
+}
+
+.btn-boleia{
+    background-color: var(--cor-primaria);
+    color: white;
+    font-weight: 600;
+}
+
+#mostrarPwd:hover{
+    color: var(--bs-emphasis-color);
+}
+
+.btn-boleia:hover{
+    background-color: var(--cor-primaria-hover);
+    color: white;
+}
+
+.login-card .input-group .btn{
+    border-color: var(--bs-border-color);
+    background-color: var(--bs-tertiary-bg);
+}
+
+.login-card .input-group-text{
+    background-color: var(--bs-body-bg);
+    border-right: none;
+}
+
+.login-card .input-group .form-control{
+    border-left: none;
+}
+
+.avatar.avatar-login{
+    width: auto;
+    padding: 0 .75rem;
+    border-radius: 999px;
+    font-size: .8rem;
+}
+
+.avatar-lg{
+    width: 56px;
+    height: 56px;
+    font-size: 1.25rem;
+}
+
+.estrelas{
+    color: #e0a800;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+}
+
+/* deixa o texto das linhas das boleias encolher em vez de empurrar o preço para fora do ecrã */
+.min-w-0{
+    min-width: 0;
+}
+
+/* largura máxima do formulário de dar boleia */
+.form-boleia{
+    max-width: 560px;
+}
+
+/* relógio da hora (flatpickr) no modo escuro: usa as cores do Bootstrap */
+[data-bs-theme="dark"] .flatpickr-calendar,
+[data-bs-theme="dark"] .flatpickr-time input,
+[data-bs-theme="dark"] .flatpickr-time .flatpickr-am-pm,
+[data-bs-theme="dark"] .flatpickr-time .flatpickr-time-separator{
+    background: var(--bs-tertiary-bg);
+    color: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .flatpickr-calendar{
+    box-shadow: 0 0 0 1px var(--bs-border-color);
+}
+
+[data-bs-theme="dark"] .flatpickr-calendar::before,
+[data-bs-theme="dark"] .flatpickr-calendar::after{
+    display: none;
+}
+
+[data-bs-theme="dark"] .flatpickr-time input:hover,
+[data-bs-theme="dark"] .flatpickr-time input:focus{
+    background: var(--bs-secondary-bg);
+}
+
+[data-bs-theme="dark"] .numInputWrapper span.arrowUp::after{
+    border-bottom-color: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .numInputWrapper span.arrowDown::after{
+    border-top-color: var(--bs-body-color);
+}
+
+/* lista de sugestões da localidade (por cima do resto do formulário) */
+.sugestoes{
+    z-index: 10;
+    top: 100%;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+/* calendário (flatpickr): o dia escolhido com a cor do BoleiaISEP */
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover{
+    background: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+/* calendário no modo escuro */
+[data-bs-theme="dark"] .flatpickr-months .flatpickr-month,
+[data-bs-theme="dark"] .flatpickr-current-month .flatpickr-monthDropdown-months,
+[data-bs-theme="dark"] span.flatpickr-weekday,
+[data-bs-theme="dark"] .flatpickr-day{
+    background: transparent;
+    color: var(--bs-body-color);
+    fill: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .flatpickr-months .flatpickr-prev-month svg,
+[data-bs-theme="dark"] .flatpickr-months .flatpickr-next-month svg{
+    fill: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .flatpickr-day:hover{
+    background: var(--bs-secondary-bg);
+    border-color: var(--bs-secondary-bg);
+}
+
+[data-bs-theme="dark"] .flatpickr-day.flatpickr-disabled,
+[data-bs-theme="dark"] .flatpickr-day.prevMonthDay,
+[data-bs-theme="dark"] .flatpickr-day.nextMonthDay{
+    color: var(--bs-secondary-color);
+    opacity: .5;
+}
+
+[data-bs-theme="dark"] .flatpickr-day.selected,
+[data-bs-theme="dark"] .flatpickr-day.selected:hover{
+    background: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    color: #fff;
+}
+
+/* estrelas para avaliar (os inputs estão de 5 para 1 e o row-reverse põe-nos de 1 para 5) */
+.estrelas-input{
+    display: inline-flex;
+    flex-direction: row-reverse;
+    gap: 2px;
+}
+
+.estrelas-input input{
+    position: absolute;
+    opacity: 0;
+    width: 0;
+}
+
+.estrelas-input label{
+    font-size: 1.75rem;
+    line-height: 1;
+    color: var(--bs-secondary-color);
+    cursor: pointer;
+}
+
+/* acende a estrela escolhida e as que estão antes dela (e o mesmo ao passar o rato) */
+.estrelas-input input:checked ~ label,
+.estrelas-input label:hover,
+.estrelas-input label:hover ~ label{
+    color: #e0a800;
+}
+
+.estrelas-input input:focus-visible + label{
+    outline: 2px solid var(--cor-primaria);
+    border-radius: 4px;
 }
