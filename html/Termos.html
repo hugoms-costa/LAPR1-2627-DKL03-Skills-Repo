@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Termos de utilização</title>
+        <script>
+            const tema = localStorage.getItem("tema") ?? "light";
+            document.documentElement.setAttribute("data-bs-theme", tema);
+        </script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="icon" type="image/png" href="../img/favicon.png">
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../index.html">BoleiaISEP</a>
+                <button type="button" class="btn btn-link nav-link px-2 ms-auto order-lg-last" id="alternarTema" aria-label="Mudar para modo escuro">
+                    <i class="bi bi-moon" id="iconeTema" aria-hidden="true"></i>
+                </button>
+                <a class="login me-2 order-lg-last" href="Login.html" aria-label="Entrar">
+                    <span class="avatar avatar-sm avatar-login" aria-hidden="true">Login</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Abrir menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Dar_Boleia.html">Dar Boleia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Boleias.html">Boleias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Minhas_Viagens.html">As minhas viagens</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Sobre.html">Sobre nós</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container mt-4 mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="h3 mb-4">Termos de utilização</h1>
+
+                <h2 class="h5">Cálculo do preço</h2>
+                <p>O preço de cada boleia é calculado pela plataforma a partir da distância do percurso, para que o condutor não tenha de negociar valores. A distância é obtida a partir da origem e do destino, multiplica-se por um valor de referência por quilómetro e o custo total é dividido por todas as pessoas no carro, incluindo o condutor.</p>
+                <p>O valor de referência é 0,40 € por quilómetro, o valor fixado para a compensação por deslocação em viatura própria em Portugal, que cobre combustível e desgaste do veículo (OCC, 2026). Sendo d a distância em quilómetros, v o valor por quilómetro e n o número de passageiros:</p>
+                <p class="text-center fw-semibold">Preço por passageiro = (d × v) ÷ (n + 1)</p>
+                <p>Por exemplo, uma viagem de 10 km com 3 passageiros tem um custo total de 10 × 0,40 € = 4,00 €, e cada passageiro paga 4,00 € ÷ 4 = 1,00 €. O condutor pode sempre oferecer a boleia gratuitamente.</p>
+
+                <h2 class="h5 mt-4">Pagamento</h2>
+                <p>O passageiro tem acesso ao preço máximo da viagem antes de efetuar a reserva e, no momento da mesma, esse valor fica cativo na plataforma. Como o preço por passageiro depende do número de pessoas no carro, o valor final só é conhecido quando as reservas fecham, 30 minutos antes da partida. Nessa altura, o passageiro paga o preço final através da plataforma para confirmar o lugar, e o restante valor cativo é libertado. Se o pagamento não for feito até à hora da partida, o lugar não fica confirmado.</p>
+                <p>O montante pago fica temporariamente retido pela plataforma e só é transferido para o condutor após a realização da viagem. A plataforma não cobra qualquer comissão nem tem fins lucrativos: o seu único propósito é facilitar a mobilidade dos estudantes, promovendo a partilha de viagens, a redução dos custos de deslocação e o espírito de entreajuda.</p>
+
+                <h2 class="h5 mt-4">Cancelamentos e reembolsos</h2>
+                <p>Se o condutor cancelar a boleia, o passageiro é reembolsado na totalidade. Se o passageiro cancelar a viagem com 24 horas de antecedência, o reembolso é total. Depois desse prazo, o valor não é reembolsado e segue para o condutor, que reservou o lugar. Se a boleia não se realizar por motivo imputável ao condutor, o reembolso é total.</p>
+
+                <h2 class="h5 mt-4">Segurança e responsabilidade</h2>
+                <p>A segurança assenta em quatro medidas:</p>
+                <ol>
+                    <li>Acesso restrito a contas com email institucional do ISEP, limitando a utilização à comunidade académica;</li>
+                    <li>Perfis identificados com nome e curso;</li>
+                    <li>Avaliação mútua entre condutor e passageiros no final de cada viagem;</li>
+                    <li>Pontos de encontro predefinidos junto ao campus.</li>
+                </ol>
+                <p>O condutor declara que possui carta de condução e seguro automóvel válidos, sendo responsável pela condução e pelo veículo. A plataforma não verifica estes documentos: trata-se de uma declaração de honra do utilizador. O valor pago pelos passageiros destina-se apenas à partilha dos custos da viagem, sem fins lucrativos, o que distingue o BoleiaISEP de um serviço de transporte remunerado.</p>
+
+                <p class="small text-body-secondary mt-4 mb-0">Ao criar conta, cada utilizador aceita estes termos de utilização.</p>
+            </div>
+        </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="../script.js"></script>
+    </body>
+</html>

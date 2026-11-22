@@ -236,3 +236,59 @@
     outline: 2px solid var(--cor-primaria);
     border-radius: 4px;
 }
+
+/* pág sobre nós: fotos da equipa, ícones dos ODS e logo do ISEP (o logo tem fundo branco, por isso leva uma placa branca no modo escuro) */
+.foto-equipa{
+    width: 88px;
+    height: 88px;
+    object-fit: cover;
+}
+
+.ods-img{
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+}
+
+.logo-isep{
+    height: 40px;
+    background-color: #fff;
+    padding: .25rem .5rem;
+    border-radius: .5rem;
+}
+
+/* títulos das secções na cor do site, com um traço por cima a separar (o scroll-margin é para o link do índice não ficar escondido atrás da navbar) */
+.titulo-sobre{
+    color: var(--cor-primaria);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--bs-border-color);
+    scroll-margin-top: 70px;
+}
+
+[data-bs-theme="dark"] .titulo-sobre{
+    color: #e06b7d;
+}
+
+.indice-sobre a{
+    color: var(--bs-secondary-color);
+}
+
+.indice-sobre a:hover{
+    color: var(--cor-primaria);
+}
+
+/* fórmula e simulador juntos numa caixa */
+.caixa-preco{
+    background-color: var(--bs-tertiary-bg);
+    border-radius: .75rem;
+    padding: 1.25rem;
+}
+
+.ods-img{
+    border-radius: .375rem;
+}
+
+.foto-equipa{
+    border: 3px solid var(--cor-primaria);
+    padding: 2px;
+}
